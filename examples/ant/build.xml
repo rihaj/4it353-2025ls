@@ -1,0 +1,29 @@
+<project name="helloAnt" default="compile">
+
+    <property name="src.dir"     value="src" />
+    <property name="build.dir"   value="build" />
+    <property name="main.class"  value="lab01.HelloAnt" />
+
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+    </target>
+
+    <target name="compile">
+        <mkdir dir="${build.dir}/classes" />
+        <javac srcdir="${src.dir}" destdir="${build.dir}/classes" />
+    </target>
+
+    <target name="jar" depends="clean,compile">
+        <mkdir dir="${build.dir}/jar" />
+        <jar destfile="${build.dir}/jar/application.jar" basedir="${build.dir}/classes">
+            <manifest>
+                <attribute name="Main-Class" value="${main.class}" />
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="run" depends="jar">
+        <java jar="${build.dir}/jar/application.jar" fork="true" />
+    </target>
+
+</project>

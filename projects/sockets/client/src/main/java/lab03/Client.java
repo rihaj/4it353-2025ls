@@ -18,8 +18,8 @@ public class Client {
         log.info("Creating client socket and connecting to server.");
         try (Scanner scanner = new Scanner(System.in);
              Socket socket = new Socket("127.0.0.1", 8080);
-             ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
-             ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream())) {
+             ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+             ObjectInputStream ois = new ObjectInputStream(socket.getInputStream())) {
 
             boolean keepAlive = true;
 

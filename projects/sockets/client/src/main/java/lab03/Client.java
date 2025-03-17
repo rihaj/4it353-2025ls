@@ -21,6 +21,9 @@ public class Client {
              ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
              ObjectInputStream ois = new ObjectInputStream(socket.getInputStream())) {
 
+            Thread listenerThread = new Thread(new Listener(ois));
+            listenerThread.start();
+
             boolean keepAlive = true;
 
             while (keepAlive) {
@@ -36,17 +39,12 @@ public class Client {
 
                 Message m = new Message(data);
                 oos.writeObject(m);
-
-                Message response = (Message) ois.readObject();
-                System.out.println(response.getTimestamp() + ": " + response.getBody());
             }
 
         } catch (UnknownHostException e) {
             log.error("Error occurred while connecting to server.", e);
         } catch (IOException e) {
             log.error("Error occurred in network communication.", e);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
         }
 
         log.info("Client terminated.");

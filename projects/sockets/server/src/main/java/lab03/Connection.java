@@ -77,11 +77,7 @@ public class Connection implements Runnable {
                         Message response = new Message("OK");
                         oos.writeObject(response);
 
-                        for (Connection c : connections) {
-                            if (c != this) {
-                                c.sendMessage(username + ": " + text);
-                            }
-                        }
+                        Server.sendMessage(username + ": " + text);
                     }
                 } else {
                     log.warn("Unknown command: {}.", command);
@@ -95,7 +91,9 @@ public class Connection implements Runnable {
             throw new RuntimeException(e);
         } finally {
             try {
-                connections.remove(this);
+                synchronized (connections) {
+                    connections.remove(this);
+                }
                 socket.close();
             } catch (IOException ex) {
                 log.debug("Exception occurred while closing socket.", ex);

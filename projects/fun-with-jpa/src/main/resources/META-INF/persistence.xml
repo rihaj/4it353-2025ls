@@ -1,0 +1,25 @@
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+                                 http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
+             version="2.2">
+
+    <persistence-unit name="punit">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <!-- <class>cz.vse.java.funwithjpa...</class> -->
+
+        <properties>
+            <property name="javax.persistence.jdbc.url"
+                      value="jdbc:h2:tcp://localhost:9092/h2db;SCHEMA=APP" />
+
+            <property name="javax.persistence.jdbc.user" value="APP_USER" />
+            <property name="javax.persistence.jdbc.password" value="APP_USER" />
+
+            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
+
+            <property name="hibernate.show_sql" value="true" />
+        </properties>
+    </persistence-unit>
+
+</persistence>

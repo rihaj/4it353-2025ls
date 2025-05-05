@@ -2,8 +2,8 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>cz.vse.4it353.lab09</groupId>
-  <artifactId>fun-with-jpa-2</artifactId>
+  <groupId>cz.vse.4it353.lab10</groupId>
+  <artifactId>fun-with-jpa-3</artifactId>
   <packaging>jar</packaging>
   <version>1.0.0-SNAPSHOT</version>
 

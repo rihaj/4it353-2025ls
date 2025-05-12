@@ -1,7 +1,5 @@
 package cz.vse.java.funwithjpa.model;
 
-import org.hibernate.annotations.ColumnDefault;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -13,49 +11,33 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
-    private long id;
+    @Column(name = "ID", nullable = false)
+    protected Long id;
 
-    @Column(name = "ACTIVE")
-    private boolean active;
+    @Column(name = "ACTIVE", nullable = false)
+    protected Boolean active;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "TYPE")
-    private UserType type;
+    @Column(name = "TYPE", nullable = false)
+    protected UserType type;
 
-    @Column(name = "LOGIN")
-    private String login;
+    @Column(name = "LOGIN", nullable = false, unique = true)
+    protected String login;
 
-    @Column(name = "NAME")
-    private String name;
+    @Column(name = "NAME", nullable = false)
+    protected String name;
 
-    @Column(name = "DATE_OF_BIRTH")
-    private LocalDate dateOfBirth;
+    @Column(name = "DATE_OF_BIRTH", nullable = false)
+    protected LocalDate dateOfBirth;
 
-    @Column(name = "BALANCE")
-    private BigDecimal balance;
+    @Column(name = "BALANCE", nullable = false)
+    protected BigDecimal balance;
 
     @Column(name = "LAST_LOGIN")
-    private LocalDateTime lastLogin;
+    protected LocalDateTime lastLogin;
 
-    @Version
-    @Column(name = "VERSION")
-    private Integer version;
-
-    public long getId() {
+    public Long getId() {
         return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
     }
 
     public UserType getType() {
@@ -64,22 +46,6 @@ public class User {
 
     public void setType(UserType type) {
         this.type = type;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public LocalDate getDateOfBirth() {
@@ -106,26 +72,45 @@ public class User {
         this.lastLogin = lastLogin;
     }
 
-    public Integer getVersion() {
-        return version;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setVersion(Integer version) {
-        this.version = version;
+    public boolean isActive() {
+        return Boolean.TRUE.equals(active);
+    }
+
+    public void setActive(boolean active) {
+        this.active = Boolean.valueOf(active);
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
     public String toString() {
-        return "User[" +
+        return "User{" +
                 "id=" + id +
                 ", active=" + active +
                 ", type=" + type +
-                ", login='" + login + "'" +
-                ", name='" + name + "'" +
+                ", login='" + login + '\'' +
+                ", name='" + name + '\'' +
                 ", dateOfBirth=" + dateOfBirth +
                 ", balance=" + balance +
                 ", lastLogin=" + lastLogin +
-                ", version=" + version +
-                ']';
+                '}';
     }
 }
